@@ -1,0 +1,25 @@
+<div class="row gap-3">
+  <section class="col">
+    <ul [activeId]="1" ngbNav #nav="ngbNav" class="nav-underline">
+
+      <li [ngbNavItem]="1">
+        <button ngbNavLink class="text-primary-emphasis fs-3 fw-semibold">
+          Mais populares
+        </button>
+        <ng-template ngbNavContent>
+          <app-lista-filmes tipoLista="populares"></app-lista-filmes>
+        </ng-template>
+      </li>
+
+      <li [ngbNavItem]="2">
+        <button ngbNavLink class="text-primary-emphasis fs-3 fw-semibold">
+          Mais Bem Avaliados
+        </button>
+        <ng-template ngbNavContent>
+          <app-lista-filmes tipoLista="bem-avaliados"></app-lista-filmes>
+        </ng-template>
+      </li>
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-3"></div>
+  </section>
+</div>
