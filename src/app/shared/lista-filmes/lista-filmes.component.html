@@ -1,3 +1,17 @@
+<div class="row">
+  <ngb-pagination 
+  [collectionSize]="10000" 
+  [(page)]="page"
+  [pageSize]="20" 
+  [maxSize]="5" 
+  [ellipses]="true"
+  [rotate]="true"
+  (pageChange)="carregarPagina($event)"
+  >
+
+  </ngb-pagination>
+</div>
+
 <div class="row g-4">
   <app-card-filme 
   class="col-6 col-md-4 col-lg-3" 

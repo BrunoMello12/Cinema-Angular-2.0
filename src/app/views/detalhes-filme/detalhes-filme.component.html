@@ -1,0 +1,64 @@
+<div *ngIf="filme" class="row justify-content-center justify-content-lg-start gap-3">
+  <section aria-label="Cabeçalho" class="row">
+    <div class="d-flex align-items-center">
+      <h1 class="text-primary-emphasis fw-semibold m-0">
+       {{ filme.titulo }}
+      </h1>
+
+      <div class="ms-auto text-end">
+        <p class="text-dark m-0">{{filme.contagemVotos}}</p>
+        <a
+          placement="right"
+          aria-label="Favoritar"
+        >
+          <i
+            class="bi bi-heart fs-2 text-primary-emphasis"
+          ></i>
+        </a>
+      </div>
+    </div>
+    <small class="fw-bold fs-5 m-0">{{filme.dataLancamento}}</small>
+  </section>
+
+  <section aria-label="Mídia" class="row gap-3">
+    <div class="col-lg-3">
+      <img [src]="filme.imagem" class="img-fluid rounded-3" alt="" />
+    </div>
+    <div class="col-lg">
+      <div class="ratio ratio-21x9 h-100">
+        <iframe class="app-trailer-filme rounded-3" 
+        [src]="urlSeguroTrailer" 
+        allowfullscreen frameborder="0"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <div class="d-flex justify-content-center justify-content-lg-start gap-3">
+    <span *ngFor="let genero of filme.generos"
+  
+      class="badge rounded-pill fs-6 px-4 py-2 bg-primary text-light"
+      >{{genero}}</span
+    >
+  </div>
+
+  <div class="row my-4">
+    <p class="fs-5 text-primary-emphasis">
+      {{filme.sinopse}}
+    </p>
+  </div>
+
+  <section class="row" aria-label="Créditos do Filme">
+    <div class="d-lg-flex fs-5">
+      <p class="fw-semibold">Diretor:</p>
+ 
+    </div>
+    <hr />
+    <div class="d-lg-flex fs-5">
+      <p class="fs-5 fw-semibold">Escritores:</p>
+    </div>
+    <hr />
+    <div class="d-lg-flex fs-5">
+      <p class="fs-5 fw-semibold">Elenco:</p>
+    </div>
+  </section>
+</div>
