@@ -37,4 +37,16 @@ export class DetalhesFilme {
       this.trailers = trailers;
       this.creditos = creditos;
   }
+
+  get diretor(): CreditosFilme | undefined{
+    return this.creditos.find(c => c.departamento == 'Directing')
+  }
+
+  get escritores(): CreditosFilme[]{
+    return this.creditos.filter(c => c.departamento == 'Writing')
+  }
+
+  get atores(): CreditosFilme[]{
+    return this.creditos.filter(c => c.departamento == 'Acting')
+  }
 }

@@ -3,3 +3,9 @@
     height: 250px;
   }
 }
+
+.app-avatar-creditos{
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+}

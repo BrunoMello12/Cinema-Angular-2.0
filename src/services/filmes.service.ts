@@ -5,6 +5,7 @@ import { Observable, map } from "rxjs";
 import { Filme } from "src/app/models/filme";
 import { DetalhesFilme } from "src/app/models/detalhes-filme";
 import { TrailerFilme } from "src/app/models/trailer-filme";
+import { CreditosFilme } from "src/app/models/creditos-filme";
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +16,7 @@ export class FilmeService {
   constructor(private http: HttpClient){}
 
   public selecionarDetalhesFilme(id: number): Observable<DetalhesFilme> {
-    const url = `${this.API}${id}?append_to_response=videos`;
+    const url = `${this.API}${id}?append_to_response=videos,credits`;
 
     return this.http.get<any>(url, this.obterHeaders())
       .pipe(
@@ -60,13 +61,25 @@ export class FilmeService {
       obj.overview,
       obj.genres,
       this.mapearTraleirsFilme(obj.videos.results),
-      []
+      this.mapearCreditosFilme(obj.credits.crew.concat(obj.credits.cast))
     )
   }
 
   private mapearTraleirsFilme(objetos: any[]): TrailerFilme[]{
     return objetos.map((obj) => {
       return new TrailerFilme(obj.id, obj.key)
+    })
+  }
+
+  private mapearCreditosFilme(objetos: any[]): CreditosFilme[]{
+    return objetos.map(obj => {
+      return new CreditosFilme(
+        obj.order,
+        obj.name,
+        obj.known_for_department,
+        obj.profile_path,
+        obj.character
+      )
     })
   }
 

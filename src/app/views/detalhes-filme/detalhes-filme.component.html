@@ -50,15 +50,59 @@
   <section class="row" aria-label="Créditos do Filme">
     <div class="d-lg-flex fs-5">
       <p class="fw-semibold">Diretor:</p>
+
+      <div class="d-flex flex-wrap gap-3 ms-auto">
+        <div class="d-flex gap-3">
+          <img
+            *ngIf="filme.diretor?.imagem && !filme.diretor?.imagem?.includes('null')"
+            [src]="filme.diretor?.imagem"
+            class="app-avatar-creditos rounded-circle"
+          />
+          <p>
+            {{filme.diretor?.nome}}
+          </p>
+        </div>
+      </div>
  
     </div>
     <hr />
     <div class="d-lg-flex fs-5">
       <p class="fs-5 fw-semibold">Escritores:</p>
+
+      <div class="d-flex flex-wrap gap-3 ms-auto">
+        <div class="d-flex gap-3" 
+        *ngFor="let creditado of filme.escritores.slice(0, 3); let i = index">
+          <img
+            *ngIf="creditado.imagem && !creditado.imagem.includes('null')"
+            [src]="creditado.imagem"
+            class="app-avatar-creditos rounded-circle"
+          />
+          <p>
+           {{ creditado.nome }}
+          </p>
+          <span *ngIf="i < filme.escritores.slice(0, 3).length - 1">•</span>
+        </div>
+      </div>
+
     </div>
     <hr />
     <div class="d-lg-flex fs-5">
       <p class="fs-5 fw-semibold">Elenco:</p>
+
+      <div class="d-flex flex-wrap gap-3 ms-auto">
+        <div class="d-flex gap-3" 
+        *ngFor="let creditado of filme.atores.slice(0, 3); let i = index">
+          <img
+            *ngIf="creditado.imagem && !creditado.imagem.includes('null')"
+            [src]="creditado.imagem"
+            class="app-avatar-creditos rounded-circle"
+          />
+          <p>
+           {{ creditado.nome }}
+          </p>
+          <span *ngIf="i < filme.atores.slice(0, 3).length - 1">•</span>
+        </div>
+      </div>
     </div>
   </section>
 </div>
