@@ -8,11 +8,14 @@
       <div class="ms-auto text-end">
         <p class="text-dark m-0">{{filme.contagemVotos}}</p>
         <a
+          (click)="favoritar()"
+          [ngbTooltip]="favorito ? 'Remover Favorito' : 'Favoritar'"
           placement="right"
           aria-label="Favoritar"
         >
           <i
-            class="bi bi-heart fs-2 text-primary-emphasis"
+            [ngClass]="favorito ? 'bi-heart-fill' : 'bi-heart'"
+            class="bi fs-2 text-primary-emphasis"
           ></i>
         </a>
       </div>
