@@ -1,7 +1,6 @@
-<div class="row gap-3">
-  <section class="col">
-    <ul [activeId]="1" ngbNav #nav="ngbNav" class="nav-underline">
-
+<div class="row gap-3 mt-4">
+  <section class="col-lg-8">
+    <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-underline">
       <li [ngbNavItem]="1">
         <button ngbNavLink class="text-primary-emphasis fs-3 fw-semibold">
           Mais populares
@@ -20,6 +19,28 @@
         </ng-template>
       </li>
     </ul>
-    <div [ngbNavOutlet]="nav" class="mt-3"></div>
+
+    <div [ngbNavOutlet]="nav" class="mt-4"></div>
   </section>
+
+  <div class="col">
+    <aside class="mt-4">
+      <h2 class="fs-3 text-primary-emphasis">Filmes Favoritos</h2>
+
+      <div class="row g-3 mt-3">
+        <a
+          routerLink="/filmes/detalhes/{{ favorito.id }}"
+          class="app-card-filme-favorito d-flex align-items-center border-start border-dark-subtle gap-3 text-decoration-none"
+          *ngFor="let favorito of filmesFavoritos"
+        >
+          <div class="col-3 col-lg-2">
+            <img [src]="favorito.imagem" class="img-fluid border rounded-3" />
+          </div>
+          <div class="col">
+            <h3 class="fs-5">{{ favorito.titulo }}</h3>
+          </div>
+        </a>
+      </div>
+    </aside>
+  </div>
 </div>
