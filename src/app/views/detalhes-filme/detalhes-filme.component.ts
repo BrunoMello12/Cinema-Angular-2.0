@@ -16,6 +16,7 @@ export class DetalhesFilmeComponent implements OnInit {
   filme: DetalhesFilme | undefined;
   urlSeguroTrailer: SafeResourceUrl | undefined;
   favorito: boolean = false;
+  filmes: Filme[] = [];
 
   constructor(private filmeService: FilmeService, 
     private localStorageService: LocalStorageService,
@@ -35,7 +36,17 @@ export class DetalhesFilmeComponent implements OnInit {
 
       this.urlSeguroTrailer =  this.sanitazer.bypassSecurityTrustResourceUrl(
         this.filme.trailers[0].sourceUrl);
+
+        this.filmes = this.localStorageService.carregarFavoritos();
+
+        this.filmes.forEach(filme => {
+          if(this.filme?.id == filme.id){
+            this.favorito = true;
+          }
+        });
     });
+
+    
   }
 
   favoritar() {
